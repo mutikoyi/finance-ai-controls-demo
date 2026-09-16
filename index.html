@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance AI Controls Demo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">AI-assisted finance product prototype</p>
+      <h1>Finance Controls Sandbox</h1>
+      <p class="intro">A working demonstration of double-entry logic, month-end journals, control checks, ledger generation and auditability.</p>
+    </div>
+    <div class="badge">Fictional data only</div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <p class="eyebrow">Control environment</p>
+      <h2>Posting controls</h2>
+      <div class="lock-row">
+        <label for="lockDate">Period lock date</label>
+        <input type="date" id="lockDate" value="2026-08-31">
+        <span class="hint">Journals on or before this date will be rejected.</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="heading-row">
+        <div>
+          <p class="eyebrow">1. Define the transaction</p>
+          <h2>Journal entry</h2>
+        </div>
+        <div class="presets">
+          <button data-preset="accrual">Load accrual</button>
+          <button data-preset="reversal">Load reversal</button>
+          <button data-preset="prepayment">Load prepayment</button>
+          <button data-preset="release">Load release</button>
+        </div>
+      </div>
+
+      <div class="meta-grid">
+        <label>Date<input type="date" id="journalDate" value="2026-09-30"></label>
+        <label>Narrative<input type="text" id="journalDescription" value="Month-end professional fees accrual"></label>
+        <label>Source
+          <select id="journalSource">
+            <option>Manual</option>
+            <option selected>Month-end</option>
+            <option>AI-assisted draft</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Account</th><th>Debit (£)</th><th>Credit (£)</th><th></th></tr></thead>
+          <tbody id="journalLines"></tbody>
+          <tfoot><tr><th>Totals</th><th id="debitTotal">0.00</th><th id="creditTotal">0.00</th><th></th></tr></tfoot>
+        </table>
+      </div>
+
+      <div class="actions">
+        <button id="addLine">+ Add line</button>
+        <button id="postJournal" class="primary">Post journal</button>
+      </div>
+
+      <div id="controlChecks" class="checks"></div>
+      <div id="message" class="message"></div>
+    </section>
+
+    <div class="two-col">
+      <section class="panel">
+        <p class="eyebrow">2. Inspect the books</p>
+        <h2>Trial balance</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Code</th><th>Account</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
+            <tbody id="trialBalanceBody"></tbody>
+            <tfoot><tr><th colspan="2">Total</th><th id="tbDebitTotal">0.00</th><th id="tbCreditTotal">0.00</th></tr></tfoot>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">3. Trace every posting</p>
+        <h2>Audit trail</h2>
+        <div id="auditTrail"></div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <p class="eyebrow">4. Drill into movements</p>
+      <h2>General ledger</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Journal</th><th>Date</th><th>Account</th><th>Description</th><th>Debit (£)</th><th>Credit (£)</th></tr></thead>
+          <tbody id="ledgerBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel method">
+      <p class="eyebrow">Product method</p>
+      <h2>Finance requirement → control rule → prototype → test → refine</h2>
+      <p>This demo starts with accounting outcomes and control requirements rather than code.</p>
+    </section>
+  </main>
+
+  <footer>Demonstration prototype — not production accounting software.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
